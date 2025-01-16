@@ -9,4 +9,4 @@ def singleNumber(nums):
     return int("".join(map(str, list)))
 
 a = singleNumber([4,1,2,1,2])
-print(a)
+print(a) 
