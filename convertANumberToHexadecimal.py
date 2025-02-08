@@ -1,21 +1,44 @@
-def hexToDec(n):
-    hexaDict = {
-        'a': 10,
-        'b': 11,
-        'c': 12,
-        'd': 13,
-        'e': 14,
-        'f': 15
+def positiveDecToHex(n):
+    hexDict = {
+        10: 'a',
+        11: 'b',
+        12: 'c',
+        13: 'd',
+        14: 'e',
+        15: 'f'
     }
 
-    res = 0 #3a
-    for i in str(n, -1, -1):
-        if i in hexaDict.values():
-            i = hexaDict[i]
-        res += int(i) * 16**(i)
-        return res
+    if n == 0:
+        return str(n)
+    
+    res = []
+    while n > 0:
+        rem = n % 16
+        n //= 16
+
+        if rem in hexDict.keys():
+            rem = hexDict[rem]
+        res.insert(0, rem)
+
+    res = ''.join(map(str, res))
+
+    return res
+
+def negativeDecToHex(n):
+    max = 4294967295
+
+    if n == -1:
+        return positiveDecToHex(max)
+
+    res = max + n + 1
+
+    return positiveDecToHex(res)
 
 def convertANumberToHexadecimal(num):
-    
+    if num < 0:
+        return negativeDecToHex(num)
+    else: 
+        return positiveDecToHex(num)
 
-    
+a = convertANumberToHexadecimal(0)
+print(a)
